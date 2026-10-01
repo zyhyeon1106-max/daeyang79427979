@@ -1,0 +1,4 @@
+node_modules/
+reading_mission.db
+reading_mission.db-wal
+reading_mission.db-shm
