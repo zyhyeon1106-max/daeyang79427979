@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대양초등학교 7942 학급 독서 미션 📚</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand" id="brand-home-btn">
+        <span class="brand-icon">📚</span>
+        <div class="brand-text">
+          <h1>7942 학급 독서 미션</h1>
+          <p>대양초등학교 독서 행사 주간 • 우리 반 친구사이(7942), 함께 완주하는 2주간의 독서!</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button id="nav-btn-auth" class="nav-btn active">
+          <span>🏠</span> 학급 입장
+        </button>
+        <button id="nav-btn-my-class" class="nav-btn" style="display: none;">
+          <span>🏫</span> 우리 반 현황
+        </button>
+        <button id="nav-btn-school" class="nav-btn">
+          <span>🌈</span> 전체 학급 현황
+        </button>
+        <button id="nav-btn-admin" class="nav-btn btn-nav-admin" title="선생님/관리자 전용">
+          <span>🔒</span> 관리자
+        </button>
+        <div id="auth-status-container" style="display: none;">
+          <div class="auth-badge">
+            <span id="current-class-badge-text">3학년 2반</span>
+            <button id="btn-logout" class="btn-logout">로그아웃</button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Event period / D-day banner -->
+  <div id="event-status-banner" class="event-status-banner" role="status" aria-live="polite">
+    <span class="event-status-icon">📅</span>
+    <span id="event-status-text">행사 기간: 2026.10.12.(월) ~ 10.23.(금)</span>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+
+    <!-- ================= PAGE 1: Login / Registration ================= -->
+    <section id="page-auth" class="page-view active">
+      <div class="welcome-hero">
+        <span class="welcome-badge">🎉 대양초등학교 독서 행사 주간</span>
+        <h2>「7942 학급 독서 미션」</h2>
+        <p>우리 반 친구들과 함께 2주 동안 책을 읽고 독서 목표를 달성해 보세요!</p>
+      </div>
+
+      <div class="auth-card-container">
+        <div class="card">
+          <div class="tab-selector">
+            <button id="tab-btn-login" class="tab-btn active">우리 반 들어가기</button>
+            <button id="tab-btn-register" class="tab-btn">새 학급 등록하기</button>
+          </div>
+
+          <!-- 1) Login Form -->
+          <form id="form-login">
+            <div class="form-group">
+              <label class="form-label">1. 학년을 선택해 주세요</label>
+              <div class="grade-btn-group" id="login-grade-group">
+                <button type="button" class="grade-choice-btn" data-grade="1">1학년</button>
+                <button type="button" class="grade-choice-btn" data-grade="2">2학년</button>
+                <button type="button" class="grade-choice-btn selected" data-grade="3">3학년</button>
+                <button type="button" class="grade-choice-btn" data-grade="4">4학년</button>
+                <button type="button" class="grade-choice-btn" data-grade="5">5학년</button>
+                <button type="button" class="grade-choice-btn" data-grade="6">6학년</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="login-class-number">2. 반을 입력해 주세요</label>
+              <input type="number" id="login-class-number" class="input-styled" min="1" max="30" placeholder="예: 2">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="login-pin">3. 학급 비밀번호 (숫자 4자리)</label>
+              <input type="password" id="login-pin" class="input-styled" maxlength="4" placeholder="예: 7942" inputmode="numeric">
+            </div>
+
+            <button type="submit" id="btn-login-submit" class="btn-primary-large">
+              우리 반으로 들어가기 🚀
+            </button>
+          </form>
+
+          <!-- 2) Registration Form -->
+          <form id="form-register" style="display: none;">
+            <div class="form-group">
+              <label class="form-label">1. 학년을 선택해 주세요</label>
+              <div class="grade-btn-group" id="reg-grade-group">
+                <button type="button" class="grade-choice-btn" data-grade="1">1학년</button>
+                <button type="button" class="grade-choice-btn" data-grade="2">2학년</button>
+                <button type="button" class="grade-choice-btn selected" data-grade="3">3학년</button>
+                <button type="button" class="grade-choice-btn" data-grade="4">4학년</button>
+                <button type="button" class="grade-choice-btn" data-grade="5">5학년</button>
+                <button type="button" class="grade-choice-btn" data-grade="6">6학년</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-class-number">2. 반을 입력해 주세요</label>
+              <input type="number" id="reg-class-number" class="input-styled" min="1" max="30" placeholder="예: 3">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-pin">3. 학급 비밀번호 설정 (숫자 4자리)</label>
+              <input type="password" id="reg-pin" class="input-styled" maxlength="4" placeholder="우리 반만 알 수 있는 4자리 비밀번호" inputmode="numeric">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">4. 도전할 미션을 선택해 주세요 (최소 1개 이상)</label>
+              <div class="mission-checkbox-container">
+                <label class="mission-checkbox-label">
+                  <input type="checkbox" id="reg-check-time" value="time" checked>
+                  <div class="mission-checkbox-info">
+                    <span class="mission-checkbox-title">미션 1. 79시간 42분 읽기 📚</span>
+                    <span class="mission-checkbox-sub">2주 동안 학급 전체 4,782분 채우기</span>
+                  </div>
+                </label>
+                <label class="mission-checkbox-label">
+                  <input type="checkbox" id="reg-check-pages" value="pages" checked>
+                  <div class="mission-checkbox-info">
+                    <span class="mission-checkbox-title">미션 2. 7,942쪽 독서 마라톤 🏃</span>
+                    <span class="mission-checkbox-sub">2주 동안 학급 전체 7,942쪽 완주하기</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" id="btn-register-submit" class="btn-primary-large">
+              우리 반 미션 시작하기 ✨
+            </button>
+          </form>
+
+          <div class="demo-hint-box">
+            💡 <strong>처음 오셨나요?</strong><br>
+            상단의 <strong>[새 학급 등록하기]</strong> 탭을 눌러 우리 반을 등록하고 7942 독서 미션에 도전해 보세요! 📖
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 2: Our Class Dashboard ================= -->
+    <section id="page-my-class" class="page-view">
+      <!-- Class Title Header -->
+      <div class="class-header-card">
+        <div class="class-title-area">
+          <h2 id="view-class-title">3학년 2반의 7942 독서 미션</h2>
+          <p id="view-class-sub">대양초등학교 친구들과 함께 한 걸음씩 목표를 향해 달려가요! 🌱</p>
+        </div>
+        <div class="mission-badges-row" id="view-class-badges">
+          <!-- Dynamically inserted badges -->
+        </div>
+      </div>
+
+      <!-- Double Mission Celebration Card (if both completed) -->
+      <div id="double-mission-banner" class="mission-success-banner" style="display: none;">
+        🏆 <strong>7942 더블 미션 성공!</strong> 우리 반이 79시간 42분과 7,942쪽을 모두 달성했습니다! 대단해요! 🎊
+      </div>
+
+      <!-- MISSION 1 CARD: 79 hours 42 minutes -->
+      <div class="card mission-card mission-card-time" id="card-mission-time" style="display: none;">
+        <div class="mission-header">
+          <div class="mission-title">
+            <span>📚</span>
+            <span>미션 1. 79시간 42분 읽기</span>
+          </div>
+          <span class="badge-pill badge-time">목표: 4,782분</span>
+        </div>
+
+        <div id="time-success-banner" class="mission-success-banner" style="display: none;">
+          🎉 <strong>79시간 42분 독서 미션 성공!</strong> 우리 반 독서 목표를 달성했습니다! 🥳
+        </div>
+
+        <div class="mission-status-row">
+          <div>
+            <span class="current-reading-text" id="time-current-text">현재 0시간 0분</span>
+            <span class="goal-reading-text"> / 목표 79시간 42분</span>
+          </div>
+          <span class="percentage-badge" id="time-percentage-text">0.0% 달성</span>
+        </div>
+
+        <!-- Large Progress Bar with milestones -->
+        <div class="progress-container">
+          <div class="progress-track">
+            <div class="progress-fill" id="time-progress-bar" style="width: 0%;"></div>
+          </div>
+          <div class="progress-milestones">
+            <span>0% (출발)</span>
+            <span>25%</span>
+            <span>50% (절반)</span>
+            <span>75%</span>
+            <span>100% (79시간 42분)</span>
+          </div>
+        </div>
+
+        <!-- Book Stacking Visual -->
+        <div class="book-visual-box">
+          <div class="book-visual-title">📚 우리 반이 쌓아 올린 지혜의 책 탑</div>
+          <div class="book-stack-area" id="book-stack-container">
+            <div class="book-stack-base"></div>
+            <!-- Mascots and stacked books injected here -->
+            <div class="book-stack-mascot" id="book-mascot">📖✨</div>
+          </div>
+          <p id="book-stack-desc" style="font-size: 0.85rem; color: #4A5568; margin-top: 0.5rem; font-weight: 700;">
+            책을 읽고 기록하면 책 탑이 점점 높아져요!
+          </p>
+        </div>
+
+        <!-- Reading Time Input Section (with Book Title) -->
+        <div class="input-section-box">
+          <div class="input-section-title">
+            <span>✏️</span>
+            <span>방법 A. 읽은 시간 직접 입력하기</span>
+          </div>
+          <form id="form-add-time" class="input-grid-form">
+            <div class="input-form-fields">
+              <input type="text" id="input-time-student" class="input-styled input-compact" maxlength="15" placeholder="학생 이름 (선택)">
+              <input type="text" id="input-time-book" class="input-styled input-compact" maxlength="40" placeholder="📖 읽은 책 제목 (필수)" required>
+              <input type="number" id="input-time-minutes" class="input-styled input-compact" min="1" max="1440" placeholder="읽은 시간 (분)" required>
+            </div>
+            <button type="submit" id="btn-submit-time" class="btn-record-submit">기록하기 📝</button>
+          </form>
+        </div>
+
+        <!-- Reading Timer Section -->
+        <div class="timer-toggle-area">
+          <div class="input-section-title">
+            <span>⏱️</span>
+            <span>방법 B. 실시간 독서 타이머</span>
+          </div>
+          <div class="timer-box">
+            <!-- Book & Student input before timer starts -->
+            <div class="timer-pre-inputs" id="timer-pre-inputs">
+              <input type="text" id="input-timer-student" class="input-styled input-compact" style="max-width: 180px;" placeholder="학생 이름 (선택)">
+              <input type="text" id="input-timer-book" class="input-styled input-compact" style="max-width: 260px;" placeholder="📖 읽을 책 제목 입력" required>
+            </div>
+
+            <div class="timer-digits" id="timer-display">00:00:00</div>
+            <div class="timer-buttons-row">
+              <button type="button" id="btn-timer-start" class="timer-btn btn-timer-start">
+                ▶ 독서 시작
+              </button>
+              <button type="button" id="btn-timer-pause" class="timer-btn btn-timer-pause" style="display: none;">
+                ⏸ 잠시 멈춤
+              </button>
+              <button type="button" id="btn-timer-stop" class="timer-btn btn-timer-stop" style="display: none;">
+                ■ 독서 끝내기
+              </button>
+            </div>
+
+            <!-- Timer Completion Confirmation Card -->
+            <div id="timer-confirm-box" class="timer-confirm-card" style="display: none;">
+              <div class="timer-confirm-title">📖 독서를 마쳤습니다!</div>
+              <p class="timer-confirm-prompt" id="timer-confirm-text">
+                측정된 독서 시간: <strong>0분</strong>
+              </p>
+              <p class="timer-confirm-book" id="timer-confirm-book-display">
+                읽은 책: <strong>책 제목</strong>
+              </p>
+              <p style="font-size: 0.88rem; color: #744210; margin-bottom: 0.8rem;">
+                이 시간을 우리 반 독서 시간에 기록할까요?
+              </p>
+              <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                <button type="button" id="btn-timer-record" class="btn-record-submit">기록하기 📚</button>
+                <button type="button" id="btn-timer-discard" class="btn-modal-cancel">기록 안 함</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION 2 CARD: 7,942 Pages Marathon -->
+      <div class="card mission-card mission-card-pages" id="card-mission-pages" style="display: none;">
+        <div class="mission-header">
+          <div class="mission-title">
+            <span>🏃</span>
+            <span>미션 2. 7,942쪽 독서 마라톤</span>
+          </div>
+          <span class="badge-pill badge-pages">목표: 7,942쪽</span>
+        </div>
+
+        <div id="pages-success-banner" class="mission-success-banner" style="display: none;">
+          🎉 <strong>7,942쪽 독서 미션 성공!</strong> 마라톤 결승선에 도달했습니다! 🏆
+        </div>
+
+        <div class="mission-status-row">
+          <div>
+            <span class="current-reading-text" id="pages-current-text">현재 0쪽</span>
+            <span class="goal-reading-text"> / 목표 7,942쪽</span>
+          </div>
+          <span class="percentage-badge" id="pages-percentage-text" style="color: #6B46C1; background: #FAF5FF;">0.0% 달성</span>
+        </div>
+
+        <!-- Marathon Track Visual -->
+        <div class="marathon-track-box">
+          <div class="marathon-track-title">🏃 책을 읽고 결승선을 향해 힘차게 달려가요!</div>
+          <div class="marathon-road-wrapper">
+            <div class="marathon-runner-agent" id="marathon-runner" style="left: 0%;">
+              <span class="runner-sprite">🏃📚</span>
+              <span class="runner-label" id="runner-bubble">출발!</span>
+            </div>
+            <div class="marathon-road-line"></div>
+            <div class="marathon-milestone-flags">
+              <span>🏁 출발</span>
+              <span>2,000쪽</span>
+              <span>4,000쪽</span>
+              <span>6,000쪽</span>
+              <span>🏆 7,942쪽</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direct Page Input Section (with Book Title) -->
+        <div class="input-section-box">
+          <div class="input-section-title">
+            <span>📖</span>
+            <span>읽은 쪽수 기록하기</span>
+          </div>
+          <form id="form-add-pages" class="input-grid-form">
+            <div class="input-form-fields">
+              <input type="text" id="input-pages-student" class="input-styled input-compact" maxlength="15" placeholder="학생 이름 (선택)">
+              <input type="text" id="input-pages-book" class="input-styled input-compact" maxlength="40" placeholder="📖 읽은 책 제목 (필수)" required>
+              <input type="number" id="input-pages-amount" class="input-styled input-compact" min="1" max="10000" placeholder="읽은 쪽수 (쪽)" required>
+            </div>
+            <button type="submit" id="btn-submit-pages" class="btn-record-submit">기록하기 📖</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Recent Records Section: KAKAO-STYLE CHAT BUBBLE FEED -->
+      <div class="card chat-records-card">
+        <div class="records-header">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.4rem;">💬</span>
+            <div>
+              <h3>우리 반 독서 피드</h3>
+              <p style="font-size: 0.8rem; color: #718096; margin-top: 2px;">친구들이 읽은 책과 기록이 실시간 말풍선으로 올라와요!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Bubble Feed Container -->
+        <div class="chat-feed-container" id="recent-records-list">
+          <div class="no-records-msg">아직 등록된 독서 기록이 없습니다. 첫 번째 책을 읽고 기록해 보세요! 📖</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 3: School-Wide Status (Read-Only) ================= -->
+    <section id="page-school" class="page-view">
+      <!-- School Hero Banner -->
+      <div class="school-summary-hero">
+        <div class="school-summary-title">🏫 대양초등학교가 함께 읽고 있어요!</div>
+        <p class="school-summary-sub">경쟁보다는 함께 2주 동안 완주하는 기쁨! 모든 학급의 소중한 독서 기록입니다.</p>
+
+        <div class="school-stats-grid">
+          <div class="school-stat-card">
+            <div class="school-stat-num" id="school-stat-classes">0개 반</div>
+            <div class="school-stat-label">참여 학급</div>
+          </div>
+          <div class="school-stat-card">
+            <div class="school-stat-num" id="school-stat-time">0시간 0분</div>
+            <div class="school-stat-label">누적 독서 시간</div>
+          </div>
+          <div class="school-stat-card">
+            <div class="school-stat-num" id="school-stat-pages">0쪽</div>
+            <div class="school-stat-label">누적 독서 쪽수</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Active Bar (shown only when Admin mode is authenticated) -->
+      <div id="admin-active-bar" class="admin-active-bar" style="display: none;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.2rem;">🔐</span>
+          <span><strong>선생님/관리자 모드 실행 중</strong>: 등록된 학급을 삭제하거나 관리할 수 있습니다.</span>
+        </div>
+        <button type="button" id="btn-admin-logout" class="btn-admin-logout">관리자 모드 종료</button>
+      </div>
+
+      <div class="readonly-notice">
+        <span>🔒</span>
+        <span>전체 학급 현황은 <strong>조회 전용</strong> 화면입니다. 다른 학급의 기록은 수정하거나 삭제할 수 없습니다.</span>
+      </div>
+
+      <!-- Grade by Grade Container -->
+      <div id="school-grades-container">
+        <!-- Injected via JS for Grade 1 through 6 -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Reusable Confirmation / Alert Modal -->
+  <div class="modal-overlay" id="common-modal">
+    <div class="modal-box">
+      <div class="modal-icon" id="modal-icon">⚠️</div>
+      <h3 class="modal-title" id="modal-title">확인</h3>
+      <p class="modal-desc" id="modal-desc">정말 진행하시겠습니까?</p>
+      <div class="modal-buttons">
+        <button type="button" class="btn-modal-cancel" id="btn-modal-cancel">취소</button>
+        <button type="button" class="btn-modal-confirm" id="btn-modal-confirm">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div class="modal-overlay" id="admin-modal">
+    <div class="modal-box">
+      <div class="modal-icon">🔐</div>
+      <h3 class="modal-title">선생님 / 관리자 인증</h3>
+      <p class="modal-desc">관리자 비밀번호를 입력하면 잘못 등록된 학급을 삭제할 수 있습니다.</p>
+      <form id="form-admin-login">
+        <input type="password" id="input-admin-key" class="input-styled" placeholder="관리자 비밀번호 입력" style="margin-bottom: 1.2rem; text-align: center; font-size: 1.1rem;" required>
+        <div class="modal-buttons">
+          <button type="button" class="btn-modal-cancel" id="btn-admin-cancel">취소</button>
+          <button type="submit" class="btn-modal-confirm" id="btn-admin-submit">인증하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Message Element -->
+  <div class="toast-msg" id="toast-message"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>「7942 학급 독서 미션」 • 대양초등학교 독서 행사 주간</p>
+    <p style="font-size: 0.78rem; margin-top: 0.25rem; color: #A0AEC0;">
+      책과 함께하는 따뜻한 친구사이! 2주 동안 79시간 42분 &amp; 7,942쪽에 도전하세요!
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/confetti.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
